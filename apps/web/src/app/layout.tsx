@@ -20,15 +20,15 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "Posterghor — print-ready Bangla posters", template: "%s · Posterghor" },
+  title: { default: "Posterghor: print-ready Bangla posters", template: "%s · Posterghor" },
   description:
     "Make print-ready political, tribute, greeting and festival posters in minutes. Real Bangla typesetting, Gemini art direction, 2400×3200 PNG / JPG / PDF export.",
   applicationName: "Posterghor",
   openGraph: {
-    title: "Posterghor — print-ready Bangla posters",
+    title: "Posterghor: print-ready Bangla posters",
     description: "Real Bangla type, art-directed by AI, ready for the press.",
     type: "website",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Posterghor — print-ready Bangla posters" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Posterghor: print-ready Bangla posters" }],
   },
   twitter: { card: "summary_large_image", images: ["/og.jpg"] },
 };

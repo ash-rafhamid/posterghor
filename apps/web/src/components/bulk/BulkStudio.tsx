@@ -263,7 +263,7 @@ export function BulkStudio() {
                       {table.rows.map((r, i) => (
                         <tr key={r.n} onClick={() => setPreview(i)} className={cn("cursor-pointer border-b border-ink/10 last:border-0 hover:bg-butter/60", i === preview && "bg-butter")}>
                           <td className="w-8 px-3 py-2 font-mono text-xs text-ink-3">{r.n}</td>
-                          <td className="px-2 py-2 font-body font-bold">{r.values.name ?? <span className="text-red-deep">— {t("bulk.needName")}</span>}</td>
+                          <td className="px-2 py-2 font-body font-bold">{r.values.name ?? <span className="text-red-deep">{t("bulk.needName")}</span>}</td>
                           <td className="px-2 py-2 font-body text-ink-2">{r.values.designation}</td>
                           <td className="hidden px-2 py-2 font-body text-ink-3 sm:table-cell">{[r.values.union, r.values.thana, r.values.district].filter(Boolean).join(", ")}</td>
                           <td className="w-8 px-2 text-right">{i === preview ? <Eye size={15} className="ml-auto" /> : null}</td>
@@ -317,7 +317,7 @@ export function BulkStudio() {
           <PreviewPanel resolved={resolved} layout={template.layoutConfig} form={form} onPalette={(id) => setField("palette", id)} placeholders={photos.length === 0} />
           {current ? (
             <p className="mt-4 text-center text-[0.95rem] text-white/85">
-              {t("bulk.previewing")}: <b className="font-body text-white">{current.values.name ?? "—"}</b> · {preview + 1}/{table.rows.length}
+              {t("bulk.previewing")}: <b className="font-body text-white">{current.values.name ?? "n/a"}</b> · {preview + 1}/{table.rows.length}
             </p>
           ) : null}
         </div>

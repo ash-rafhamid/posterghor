@@ -14,7 +14,7 @@ authRouter.post("/register", authLimiter, validate(registerSchema), async (req, 
   const { name, identifier, password } = req.body as RegisterInput;
   const id = parseIdentifier(identifier)!;
   const taken = await User.exists(id.kind === "email" ? { email: id.value } : { phone: id.value });
-  if (taken) throw conflict(id.kind === "email" ? "An account with this email already exists — try signing in." : "An account with this mobile number already exists — try signing in.", "ACCOUNT_EXISTS");
+  if (taken) throw conflict(id.kind === "email" ? "An account with this email already exists. Try signing in." : "An account with this mobile number already exists. Try signing in.", "ACCOUNT_EXISTS");
 
   const user = await User.create({
     name,

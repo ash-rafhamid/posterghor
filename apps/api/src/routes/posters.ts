@@ -173,7 +173,7 @@ postersRouter.post("/bulk", generateLimiter, validate(bulkPosterSchema), async (
       continue;
     }
     const form = parsed.data;
-    if (!form.photos.length) throw badRequest("Add at least one photo — posters are built around portraits.", "PHOTO_REQUIRED");
+    if (!form.photos.length) throw badRequest("Add at least one photo. Posters are built around portraits.", "PHOTO_REQUIRED");
     if (!photosChecked) {
       assertOwnPhotos(form.photos.map((p) => p.url), userId);
       photosChecked = true;
@@ -260,7 +260,7 @@ postersRouter.post("/", generateLimiter, validate(createPosterSchema), async (re
 
   const template = await Template.findOne({ _id: templateId, isActive: true });
   if (!template) throw notFound("That template isn't available any more");
-  if (!form.photos.length) throw badRequest("Add at least one photo — posters are built around portraits.", "PHOTO_REQUIRED");
+  if (!form.photos.length) throw badRequest("Add at least one photo. Posters are built around portraits.", "PHOTO_REQUIRED");
   assertOwnPhotos(form.photos.map((p) => p.url), userId);
   const verdict = assertCleanText(form);
 
@@ -305,7 +305,7 @@ postersRouter.get("/:id", async (req, res) => {
 postersRouter.post("/:id/regenerate", generateLimiter, validate(regeneratePosterSchema), async (req, res) => {
   const poster = await loadPoster(req);
   const body = req.body as RegeneratePosterInput;
-  if (poster.status === "generating") throw conflict("This poster is still being generated — hang on a moment.", "BUSY");
+  if (poster.status === "generating") throw conflict("This poster is still being generated. Hang on a moment.", "BUSY");
   if (poster.moderation?.status === "blocked") throw forbidden("This poster was blocked by moderation and can't be regenerated.", "BLOCKED");
   if (poster.regenCount >= env.MAX_REGENERATIONS) {
     throw forbidden(`You've used all ${env.MAX_REGENERATIONS} regenerations for this poster. Create a new poster to keep exploring.`, "REGEN_LIMIT");
@@ -316,7 +316,7 @@ postersRouter.post("/:id/regenerate", generateLimiter, validate(regeneratePoster
   const merged = posterFormSchema.parse({ ...(poster.formData as object), ...(body.formData ?? {}), occasion: template.occasionType });
   // "Try another look" hands the palette back to the art director (a pinned colourway would just repeat itself)
   if (!body.keepStyle) merged.palette = "auto";
-  if (!merged.photos.length) throw badRequest("Add at least one photo — posters are built around portraits.", "PHOTO_REQUIRED");
+  if (!merged.photos.length) throw badRequest("Add at least one photo. Posters are built around portraits.", "PHOTO_REQUIRED");
   assertOwnPhotos(merged.photos.map((p) => p.url), String(poster.userId));
   const verdict = assertCleanText(merged);
 

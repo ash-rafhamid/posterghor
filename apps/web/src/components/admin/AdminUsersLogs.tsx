@@ -86,7 +86,7 @@ export function AdminLogs() {
     <>
       <AdminHeading
         title="AI & render logs"
-        sub="One row per generation attempt — Gemini prompt, tokens, latency and whether it was served from cache."
+        sub="One row per generation attempt: Gemini prompt, tokens, latency and whether it was served from cache."
         actions={
           <button type="button" className="chip" data-active={failedOnly} aria-pressed={failedOnly} onClick={() => (setFailedOnly((v) => !v), setPage(1))}>
             Failures only
@@ -119,9 +119,9 @@ export function AdminLogs() {
                     {l.cacheHit ? <span className="tag ml-1.5 !bg-aqua !text-[0.7rem]">cache</span> : null}
                     {l.model ? <p className="mt-1 max-w-[12rem] truncate font-mono text-[0.65rem] text-ink-3">{l.model}</p> : null}
                   </td>
-                  <td className="px-4 py-3 text-right font-mono">{l.tokensUsed || "—"}</td>
-                  <td className="px-4 py-3 text-right font-mono">{l.latencyMs ? `${(l.latencyMs / 1000).toFixed(1)}s` : "—"}</td>
-                  <td className="px-4 py-3 text-right font-mono">{l.renderMs ? `${(l.renderMs / 1000).toFixed(1)}s` : "—"}</td>
+                  <td className="px-4 py-3 text-right font-mono">{l.tokensUsed || "n/a"}</td>
+                  <td className="px-4 py-3 text-right font-mono">{l.latencyMs ? `${(l.latencyMs / 1000).toFixed(1)}s` : "n/a"}</td>
+                  <td className="px-4 py-3 text-right font-mono">{l.renderMs ? `${(l.renderMs / 1000).toFixed(1)}s` : "n/a"}</td>
                   <td className="px-4 py-3">
                     {l.success ? <span className="tag !bg-teal">ok</span> : <span className="tag !bg-red !text-white">failed</span>}
                     {l.error ? <p className="mt-1 max-w-xs text-xs text-red-deep">{l.error}</p> : null}

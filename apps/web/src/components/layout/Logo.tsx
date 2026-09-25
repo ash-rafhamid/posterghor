@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export function Logo({ className, size = "md" }: { className?: string; size?: "md" | "lg" }) {
   const big = size === "lg";
   return (
-    <Link href="/" aria-label="Posterghor — home" className={cn("group inline-flex items-center gap-2.5", className)}>
+    <Link href="/" aria-label="Posterghor home" className={cn("group inline-flex items-center gap-2.5", className)}>
       <Wheel size={big ? 64 : 48} className="shrink-0 transition-transform duration-[900ms] ease-out group-hover:rotate-[200deg]" />
       <span className="flex flex-col leading-none">
         <span className={cn("paint paint-sm font-extrabold", big ? "text-[2.1rem]" : "text-[1.6rem]")}>পোস্টারঘর</span>

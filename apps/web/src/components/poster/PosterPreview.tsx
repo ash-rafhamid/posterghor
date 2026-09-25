@@ -91,7 +91,7 @@ function PosterPreviewImpl({ resolved, placeholders = false, className, style, w
     <div
       ref={boxRef}
       role="img"
-      aria-label={`${c.headline} — ${c.name}`}
+      aria-label={`${c.headline}, ${c.name}`}
       className={cn("poster-stage relative overflow-hidden", className)}
       style={{ aspectRatio: `${POSTER_WIDTH} / ${POSTER_HEIGHT}`, width: width ?? "100%", ...style }}
     >

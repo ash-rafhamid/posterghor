@@ -21,7 +21,7 @@ export function demoContent(layout: LayoutConfig, occasion: OccasionId, opts: { 
     subheadline: layout.defaults.subheadline,
     name: "মোঃ আবদুর রহমান",
     designation: isTribute ? "সদস্য, ইউনিয়ন পরিষদ" : "সভাপতি, ৫নং ওয়ার্ড কমিটি",
-    party: isTribute ? "স্মরণে — পরিবারের পক্ষ থেকে" : "গণকল্যাণ সংঘ",
+    party: isTribute ? "স্মরণে, পরিবারের পক্ষ থেকে" : "গণকল্যাণ সংঘ",
     union: "৫নং ইউনিয়ন",
     thana: "সদর থানা",
     district: "ময়মনসিংহ জেলা",

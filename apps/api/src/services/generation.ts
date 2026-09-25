@@ -38,7 +38,7 @@ async function loadPhotos(poster: PosterDoc): Promise<LoadedPhotos> {
       buf = await storage.read(url);
     } catch (e) {
       logger.error({ err: e, url }, "could not read uploaded photo");
-      throw new Error(`Photo ${i + 1} could not be loaded — please upload it again.`);
+      throw new Error(`Photo ${i + 1} could not be loaded. Please upload it again.`);
     }
     render.push(await prepareForRender(buf, !!meta?.hasAlpha));
     alpha.push(!!meta?.hasAlpha);

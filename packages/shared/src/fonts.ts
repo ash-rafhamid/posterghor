@@ -32,7 +32,7 @@ export interface FontDef {
   weights: number[];
   /** Weight used by default for headlines */
   defaultWeight: number;
-  /** Rough average advance width of a Bangla cluster, in em — used for the first-pass fit estimate */
+  /** Rough average advance width of a Bangla cluster, in em, used for the first-pass fit estimate */
   avgAdvance: number;
   files: FontFile[];
 }
@@ -62,7 +62,7 @@ export const FONTS: FontDef[] = [
     id: "anek",
     label: "Modern Bold",
     labelBn: "আধুনিক বোল্ড",
-    vibe: "Sturdy, contemporary — great for rallies & campaigns",
+    vibe: "Sturdy, contemporary, great for rallies & campaigns",
     family: "Anek Bangla",
     pkg: "@fontsource/anek-bangla",
     role: "display",
@@ -75,7 +75,7 @@ export const FONTS: FontDef[] = [
     id: "baloo",
     label: "Banner",
     labelBn: "ব্যানার",
-    vibe: "Chunky, friendly — the classic street-banner look",
+    vibe: "Chunky, friendly, the classic street-banner look",
     family: "Baloo Da 2",
     pkg: "@fontsource/baloo-da-2",
     role: "display",
@@ -88,7 +88,7 @@ export const FONTS: FontDef[] = [
     id: "serif",
     label: "Classic Serif",
     labelBn: "ক্লাসিক সেরিফ",
-    vibe: "Formal and dignified — tributes & official notices",
+    vibe: "Formal and dignified, tributes & official notices",
     family: "Noto Serif Bengali",
     pkg: "@fontsource/noto-serif-bengali",
     role: "display",
@@ -101,7 +101,7 @@ export const FONTS: FontDef[] = [
     id: "tiro",
     label: "Elegant",
     labelBn: "সুললিত",
-    vibe: "Literary and refined — soft, respectful tone",
+    vibe: "Literary and refined, soft, respectful tone",
     family: "Tiro Bangla",
     pkg: "@fontsource/tiro-bangla",
     role: "display",
@@ -114,7 +114,7 @@ export const FONTS: FontDef[] = [
     id: "galada",
     label: "Brush Script",
     labelBn: "তুলির আঁচড়",
-    vibe: "Hand-painted flourish — greetings & festivals",
+    vibe: "Hand-painted flourish, greetings & festivals",
     family: "Galada",
     pkg: "@fontsource/galada",
     role: "display",
@@ -127,7 +127,7 @@ export const FONTS: FontDef[] = [
     id: "atma",
     label: "Playful",
     labelBn: "হাসিখুশি",
-    vibe: "Rounded and cheerful — celebrations & wishes",
+    vibe: "Rounded and cheerful, celebrations & wishes",
     family: "Atma",
     pkg: "@fontsource/atma",
     role: "display",
@@ -173,7 +173,7 @@ export function getFont(id: string | undefined): FontDef {
   return FONTS.find((f) => f.id === id) ?? FONTS.find((f) => f.id === DEFAULT_HEADLINE_FONT)!;
 }
 
-/** All distinct (package, file) pairs — used by the web app to copy fonts into /public/fonts. */
+/** All distinct (package, file) pairs, used by the web app to copy fonts into /public/fonts. */
 export function allFontFiles(): Array<{ pkg: string; file: string }> {
   return FONTS.flatMap((f) => f.files.map((x) => ({ pkg: f.pkg, file: x.file })));
 }

@@ -61,7 +61,7 @@ export function AdminModeration() {
       {list.isPending ? (
         <div className="grid min-h-[30vh] place-items-center"><Spinner size={40} /></div>
       ) : items.length === 0 ? (
-        <p className="mt-16 text-center text-[1.2rem] font-semibold text-white/85">Nothing here — the queue is clear.</p>
+        <p className="mt-16 text-center text-[1.2rem] font-semibold text-white/85">Nothing here. The queue is clear.</p>
       ) : (
         <ul className="mt-8 space-y-5">
           {items.map((p) => (
@@ -85,7 +85,7 @@ export function AdminModeration() {
                 <p className="mt-2 text-sm text-ink-2">
                   <b className="font-body">{p.formData.name}</b>
                   {p.formData.designation ? <span className="font-body"> · {p.formData.designation}</span> : null}
-                  {p.owner ? <span className="text-ink-3"> — by {p.owner.name} ({p.owner.email ?? p.owner.phone})</span> : null}
+                  {p.owner ? <span className="text-ink-3"> by {p.owner.name} ({p.owner.email ?? p.owner.phone})</span> : null}
                 </p>
                 {p.moderation.reasons.length ? (
                   <ul className="mt-3 flex flex-wrap gap-2">
@@ -116,7 +116,7 @@ export function AdminModeration() {
       {list.data ? <Pager page={list.data.page} pageSize={list.data.pageSize} total={list.data.total} onPage={setPage} /> : null}
 
       <Dialog open={!!target} onClose={() => setTarget(null)} title={target ? `Mark as ${target.status}` : ""}>
-        <p className="text-sm text-ink-2">Optionally leave a note — the owner sees it on their poster.</p>
+        <p className="text-sm text-ink-2">Optionally leave a note. The owner sees it on their poster.</p>
         <textarea className="field mt-3" rows={3} maxLength={300} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Reason / note (optional)" />
         <div className="mt-5 flex justify-end gap-3">
           <button type="button" className="btn btn-ghost-ink" onClick={() => setTarget(null)}>

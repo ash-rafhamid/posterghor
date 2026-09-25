@@ -64,7 +64,7 @@ function TemplateEditor({ open, initial, onClose, onSaved }: { open: boolean; in
       if (r.success) return { ok: true as const, layout: r.data as LayoutConfig };
       return { ok: false as const, errors: r.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`) };
     } catch (e) {
-      return { ok: false as const, errors: [`Invalid JSON — ${(e as Error).message}`] };
+      return { ok: false as const, errors: [`Invalid JSON: ${(e as Error).message}`] };
     }
   }, [s.layoutJson]);
 
@@ -226,7 +226,7 @@ export function AdminTemplates() {
   const del = useMutation({
     mutationFn: (id: string) => api.admin.deleteTemplate(id),
     onSuccess: (r) => {
-      toast.success(r.deleted ? "Template deleted" : "Template has posters — deactivated instead");
+      toast.success(r.deleted ? "Template deleted" : "Template has posters, so it was deactivated instead");
       setToDelete(null);
       refresh();
     },

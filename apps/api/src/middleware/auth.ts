@@ -28,7 +28,7 @@ async function loadUser(req: Request): Promise<UserDoc | null> {
 
 export async function requireAuth(req: Request, _res: Response, next: NextFunction): Promise<void> {
   const user = await loadUser(req);
-  if (!user) throw unauthorized(bearer(req) ? "Your session has expired — please sign in again" : "Please sign in to continue", "UNAUTHORIZED");
+  if (!user) throw unauthorized(bearer(req) ? "Your session has expired. Please sign in again" : "Please sign in to continue", "UNAUTHORIZED");
   req.user = user;
   next();
 }

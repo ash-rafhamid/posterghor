@@ -46,7 +46,7 @@ export const VICTORY_LAYOUT: LayoutConfig = {
   headline: { fontId: "anek", bodyFontId: "hind", style: "stroke" },
   defaults: {
     headline: "মহান বিজয় দিবস",
-    subheadline: "১৬ ডিসেম্বর — লাল-সবুজের গৌরবের দিন",
+    subheadline: "১৬ ডিসেম্বর, লাল-সবুজের গৌরবের দিন",
     creditLabel: "প্রচারে",
   },
   colorways: [

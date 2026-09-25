@@ -152,7 +152,7 @@ export function HistoryView() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
       <PageHead
-        tag={authStatus === "authed" ? `${total}` : "—"}
+        tag={authStatus === "authed" ? `${total}` : "0"}
         title={t("history.title")}
         sub={t("history.sub")}
         action={

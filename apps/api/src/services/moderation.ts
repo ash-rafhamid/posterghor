@@ -32,12 +32,12 @@ const BLOCK: Rule[] = [
 ];
 
 const REVIEW: Rule[] = [
-  { re: /(ফাঁসি|ফাঁসির)\s*(চাই|দাও|দিতে হবে)/u, reason: "Calls for execution (protest slogan) — needs review" },
-  { re: /(গণধোলাই|গণপিটুনি|ঘেরাও|অবরোধ\s*চাই)/u, reason: "Mentions mob action / blockade — needs review" },
-  { re: /(দালাল|রাজাকার|গাদ্দার|বেইমান|দেশদ্রোহী)/u, reason: "Political name-calling — needs review" },
-  { re: /(নিষিদ্ধ\s*কর|ban\s+(the\s+)?party)/iu, reason: "Calls to ban a group — needs review" },
+  { re: /(ফাঁসি|ফাঁসির)\s*(চাই|দাও|দিতে হবে)/u, reason: "Calls for execution (protest slogan), needs review" },
+  { re: /(গণধোলাই|গণপিটুনি|ঘেরাও|অবরোধ\s*চাই)/u, reason: "Mentions mob action / blockade, needs review" },
+  { re: /(দালাল|রাজাকার|গাদ্দার|বেইমান|দেশদ্রোহী)/u, reason: "Political name-calling, needs review" },
+  { re: /(নিষিদ্ধ\s*কর|ban\s+(the\s+)?party)/iu, reason: "Calls to ban a group, needs review" },
   // whole words only — not the "গুলি" inside "এগুলি" (these) or the "gun" inside "begun"
-  { re: /(?<![ঀ-৿])(অস্ত্র|বোমা|গুলি)|\b(bombs?|guns?|weapons?)\b/iu, reason: "Weapon reference — needs review" },
+  { re: /(?<![ঀ-৿])(অস্ত্র|বোমা|গুলি)|\b(bombs?|guns?|weapons?)\b/iu, reason: "Weapon reference, needs review" },
 ];
 
 export interface ModerationVerdict {

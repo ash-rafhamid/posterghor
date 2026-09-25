@@ -246,13 +246,13 @@ export function Studio() {
         </div>
         <div className={cn("tag !py-1.5 !text-[0.85rem]", cfg?.ai.gemini ? "!bg-teal" : "!bg-butter")}>
           <Sparkles size={15} strokeWidth={2.8} />
-          {cfg?.ai.gemini ? `Gemini · ${cfg.ai.textModel}` : lang === "bn" ? "এআই বন্ধ — বাছাই করা রঙের সাজ" : "AI off · curated colourways"}
+          {cfg?.ai.gemini ? `Gemini · ${cfg.ai.textModel}` : lang === "bn" ? "এআই বন্ধ, বাছাই করা রঙের সাজ" : "AI off · curated colourways"}
         </div>
       </header>
 
       {tplQuery.isSuccess && !tplQuery.data.items.length ? (
         <p role="status" className="plate plate-butter mb-6 px-5 py-4 text-[0.98rem] font-bold">
-          The server has no templates yet — an admin needs to run <code className="rounded-md bg-ink px-1.5 py-0.5 font-mono text-[0.85em] text-white">npm run seed</code>. You can still design with the built-in presets; generating needs the seeded templates.
+          The server has no templates yet. An admin needs to run <code className="rounded-md bg-ink px-1.5 py-0.5 font-mono text-[0.85em] text-white">npm run seed</code>. You can still design with the built-in presets; generating needs the seeded templates.
         </p>
       ) : null}
 
