@@ -261,7 +261,7 @@ export function fallbackScheme(layout: LayoutConfig, occasionId: string, variant
     variant,
     colorwayName: cw?.name,
     mood: layout.tone ?? occasion.tone,
-    rationale: `A curated “${cw?.name ?? "classic"}” colourway for the ${occasion.en} template. Connect Gemini (GEMINI_API_KEY) to have the AI art-direct a fresh palette for every variant.`,
+    rationale: `A curated “${cw?.name ?? "classic"}” colourway for the ${occasion.en} template.`,
     taglines: occasion.subheadlines,
   };
 }

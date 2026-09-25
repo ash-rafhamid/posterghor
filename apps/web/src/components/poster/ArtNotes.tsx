@@ -46,10 +46,10 @@ export function ArtNotes({ poster, template, onTagline }: { poster: ApiPoster; t
 
       {scheme.colorwayName ? <p className="mt-5 font-display text-[1.7rem] font-extrabold leading-tight">{scheme.colorwayName}</p> : null}
       {scheme.mood ? <p className="mt-0.5 text-[0.95rem] font-semibold text-ink-3">{scheme.mood}</p> : null}
-      {scheme.rationale ? (
+      {(isAi ? scheme.rationale : t("poster.rationaleFallback", { name: scheme.colorwayName ?? "" })) ? (
         <p className="relative mt-4 rounded-2xl border-[3px] border-ink bg-blush p-4 pl-12 text-[0.98rem] leading-relaxed text-ink-2">
           <Quote size={22} strokeWidth={2.6} className="absolute left-3.5 top-4 text-rose" />
-          {scheme.rationale}
+          {isAi ? scheme.rationale : t("poster.rationaleFallback", { name: scheme.colorwayName ?? "" })}
         </p>
       ) : null}
 
