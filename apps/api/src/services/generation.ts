@@ -176,7 +176,9 @@ export async function runGeneration(posterId: string): Promise<void> {
     log.renderMs = rendered.ms;
 
     await setStage(poster._id, "saving");
-    const [preview, optimised] = await Promise.all([makePreview(rendered.png), optimisePng(rendered.png)]);
+    // one after the other: two 2400×3200 sharp pipelines at once double the peak memory
+    const preview = await makePreview(rendered.png);
+    const optimised = await optimisePng(rendered.png);
     let master = optimised;
     let ext: "png" | "jpg" = "png";
     // Cloudinary's free tier caps images at 10 MB — keep a print-grade JPEG master if a PNG would exceed it.

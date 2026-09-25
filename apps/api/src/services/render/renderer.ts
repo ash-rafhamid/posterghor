@@ -52,6 +52,8 @@ async function launch(): Promise<Browser> {
       "--force-color-profile=srgb",
       "--hide-scrollbars",
       "--disable-gpu",
+      // small-server mode: fewer background services and a capped JS heap inside Chrome
+      ...(env.lowMemory ? ["--disable-extensions", "--disable-background-networking", "--disable-default-apps", "--mute-audio", "--renderer-process-limit=1", "--js-flags=--max-old-space-size=192"] : []),
     ],
   });
   browser.on("disconnected", () => {
@@ -152,11 +154,16 @@ export function renderPoster(resolved: ResolvedPoster, opts: RenderOptions = {})
         new Promise<never>((_, rej) => setTimeout(() => rej(new Error("Render timed out")), 90_000)),
       ]);
     try {
-      return await attempt();
-    } catch (e) {
-      logger.warn({ err: e }, "render failed — retrying once with a fresh browser");
-      await closeBrowser();
-      return await attempt();
+      try {
+        return await attempt();
+      } catch (e) {
+        logger.warn({ err: e }, "render failed, retrying once with a fresh browser");
+        await closeBrowser();
+        return await attempt();
+      }
+    } finally {
+      // give the memory back after every poster, but never close Chrome under another running render
+      if (env.lowMemory && queue.pending <= 1) await closeBrowser();
     }
   }) as Promise<RenderResult>;
 }

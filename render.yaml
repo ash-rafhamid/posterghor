@@ -6,8 +6,8 @@ services:
     runtime: docker
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: .
-    # Free plan = 512 MB: enough for the poster renderer with RENDER_CONCURRENCY=1, but it sleeps after 15 min idle
-    # (first request then takes ~50 s). Switch to `starter` (1 GB, always on) for real campaigns.
+    # Free plan = 512 MB and sleeps after 15 min idle (first request then takes about a minute). `starter` is also
+    # 512 MB but always on; `standard` (2 GB) is the plan for heavy bulk runs.
     plan: free
     healthCheckPath: /api/health
     autoDeploy: true
@@ -28,5 +28,9 @@ services:
         sync: false
       - key: RENDER_CONCURRENCY
         value: "1"
+      - key: RENDER_LOW_MEMORY
+        value: "true"
+      - key: NODE_OPTIONS
+        value: "--max-old-space-size=220"
       - key: MAX_REGENERATIONS
         value: "3"

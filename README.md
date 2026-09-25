@@ -248,7 +248,7 @@ The reference setup uses free tiers of four services. The API needs a long-runni
 
 1. **MongoDB Atlas.** Create a free cluster, add a database user, allow network access from `0.0.0.0/0`, and copy the connection string.
 2. **Cloudinary.** Create an account and copy the `CLOUDINARY_URL` value.
-3. **Render.** Choose *New, Blueprint* and select this repository. Set `MONGODB_URI`, `CLOUDINARY_URL`, `PUBLIC_API_URL` (the service's own URL) and `CORS_ORIGINS` (the Vercel URL). `GEMINI_API_KEY` is optional. The blueprint uses the free plan with `RENDER_CONCURRENCY=1`. Free instances sleep after 15 minutes idle (the first request then takes about a minute), so switch to the `starter` plan for always-on use.
+3. **Render.** Choose *New, Blueprint* and select this repository. Set `MONGODB_URI`, `CLOUDINARY_URL`, `PUBLIC_API_URL` (the service's own URL) and `CORS_ORIGINS` (the Vercel URL). `GEMINI_API_KEY` is optional. The blueprint uses the free plan (512 MB) with `RENDER_CONCURRENCY=1` and `RENDER_LOW_MEMORY=true`, which restarts Chrome after every poster to keep memory low. Free instances sleep after 15 minutes idle (the first request then takes about a minute). The `starter` plan is also 512 MB but always on, and the `standard` plan (2 GB) suits heavy bulk runs.
 4. **Vercel.** Import the repository, set **Root Directory** to `apps/web`, and add `NEXT_PUBLIC_API_URL` with the Render URL. Then set the Vercel URL as `CORS_ORIGINS` on Render.
 5. **Seed once** from your machine, with the same connection strings and your own admin credentials:
 

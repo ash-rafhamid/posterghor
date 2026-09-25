@@ -60,6 +60,8 @@ const schema = z.object({
 
   // ── rendering ─────────────────────────────────────────────────────────────
   RENDER_CONCURRENCY: z.coerce.number().int().min(1).max(8).default(2),
+  /** Trade a little speed for a much smaller memory footprint (Chrome restarts after each poster). Default: on in production. */
+  RENDER_LOW_MEMORY: z.enum(["true", "false"]).optional(),
   /** Path to Chrome/Chromium/Edge. Empty → Puppeteer's bundled Chrome, then well-known system locations. */
   CHROME_PATH: z.string().optional(),
 
@@ -101,6 +103,7 @@ export const env = {
     .filter(Boolean),
   publicApiUrl: raw.PUBLIC_API_URL.replace(/\/$/, ""),
   storageDriver: (raw.STORAGE_DRIVER === "auto" ? (cloudinaryConfigured ? "cloudinary" : "local") : raw.STORAGE_DRIVER) as "local" | "cloudinary",
+  lowMemory: raw.RENDER_LOW_MEMORY ? raw.RENDER_LOW_MEMORY === "true" : isProd,
   geminiEnabled: Boolean(raw.GEMINI_API_KEY),
   maxUploadBytes: Math.round(raw.MAX_UPLOAD_MB * 1024 * 1024),
 } as const;

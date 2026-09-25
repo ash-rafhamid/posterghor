@@ -1,7 +1,13 @@
 import { createHash } from "node:crypto";
 import sharp, { type Metadata } from "sharp";
 import type { Focus } from "@poster/shared";
+import { env } from "../config/env";
 import { badRequest } from "../lib/errors";
+
+if (env.lowMemory) {
+  sharp.cache(false);
+  sharp.concurrency(1);
+}
 
 const ACCEPTED = new Set(["jpeg", "png", "webp", "gif", "tiff", "heif", "avif"]);
 
