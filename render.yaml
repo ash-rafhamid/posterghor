@@ -1,0 +1,32 @@
+# Render Blueprint — deploys the API as a Docker web service.
+# (The Next.js frontend is deployed separately on Vercel — see README → Deployment.)
+services:
+  - type: web
+    name: posterghor-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: .
+    # Free plan = 512 MB: enough for the poster renderer with RENDER_CONCURRENCY=1, but it sleeps after 15 min idle
+    # (first request then takes ~50 s). Switch to `starter` (1 GB, always on) for real campaigns.
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI            # MongoDB Atlas connection string
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PUBLIC_API_URL         # e.g. https://posterghor-api.onrender.com
+        sync: false
+      - key: CORS_ORIGINS           # your Vercel URL, e.g. https://posterghor.vercel.app
+        sync: false
+      - key: CLOUDINARY_URL         # cloudinary://<key>:<secret>@<cloud>  (files vanish on redeploy without it)
+        sync: false
+      - key: GEMINI_API_KEY         # optional — enables AI art direction
+        sync: false
+      - key: RENDER_CONCURRENCY
+        value: "1"
+      - key: MAX_REGENERATIONS
+        value: "3"

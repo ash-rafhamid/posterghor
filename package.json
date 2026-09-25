@@ -1,0 +1,31 @@
+{
+  "name": "ai-political-poster-maker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Political Poster Maker — Bangla-first, print-ready poster generation (Next.js + Express + MongoDB + Gemini).",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c \"#0b6b4f,#e63a2e\" \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @poster/api",
+    "dev:web": "npm run dev -w @poster/web",
+    "build": "npm run build -w @poster/api && npm run build -w @poster/web",
+    "start:api": "npm run start -w @poster/api",
+    "start:web": "npm run start -w @poster/web",
+    "seed": "npm run seed -w @poster/api",
+    "samples": "npm run samples -w @poster/api",
+    "smoke": "npm run smoke -w @poster/api",
+    "test:gemini": "npm run test:gemini -w @poster/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "~5.9.3"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
